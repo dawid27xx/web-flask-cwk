@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+    <link rel="stylesheet" href="/static/style.css">
+
+    <!-- Title-->
+    {% if title %}
+        <title>{{ title }}</title>
+        {% else %}
+        <title> No title specified</title>
+        {% endif %}
+    </head>
+    <body>
+    <!--Nav bar-->
+<!--Nav bar-->
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
+  <a href='/' class="navbar-brand">
+    <img src="/static/logo3.png" width="30" height="30" class="d-inline-block align-top" alt="Blue L">
+    LeedsHub
+  </a>
+  <!-- Navbar Toggler -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <!-- Navbar Collapse -->
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item"><a class="nav-link" href="/findgroups">Groups</a></li>
+      <li class="nav-item"><a class="nav-link" href="/profile">Profile</a></li>
+      <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+    </ul>
+  </div>
+</nav>
+
+   <!-- Messages -->
+   <br>
+   <div class="container-fluid">
+          {% with messages = get_flashed_messages() %}
+            {% if messages %}
+              {% for message in messages %}
+              <div class="alert alert-info alert-dismissible fade show" role="alert">
+                {{ messages[0] }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
+    </div>
+
+    <!-- Page -->
+    <div id="page">
+   {% block content %}{% endblock %}
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    </body>
+  </html>

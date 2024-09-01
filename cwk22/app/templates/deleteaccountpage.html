@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<html>
+ <head>
+</head>
+<body>
+    <div style="text-align:center">
+    <h2>Delete account</h2>
+    <h3>Current Account: {{current_user.username}}</h3>
+    <h3 style="color:red">You cannot retrieve your account after this</h3>
+    <br>
+    <a href='/deleteaccount' class="btn btn-lg btn-outline-danger">Delete Account</a>
+    </div>
+</body>
+</html>
+{% endblock %}

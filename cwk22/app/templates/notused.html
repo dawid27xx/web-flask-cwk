@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<html>
+<head>
+</head>
+<body>
+        <div style="border-style: solid; border-radius: 10px; width: 50%; padding: 20px" class="container">
+            <br>
+            <h2>Add Post</h2>
+            <form action="" method="post" name="login">
+                {{ form.hidden_tag() }}
+                <div class="mb-3">
+                    <label for="content" class="form-label">Content</label>
+                    {{ form.content(class="form-control",rows="7", id="content") }}
+                    {% for error in form.content.errors %}
+                      <div class="form-text text-danger">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <br>
+            </form>
+            <br>
+        </div>
+
+
+    </body>
+</html>
+{% endblock %}

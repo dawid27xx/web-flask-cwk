@@ -1,0 +1,66 @@
+{% extends "base2.html" %}
+{% block content %}
+<html>
+ <head>
+</head>
+<body>
+        <br>
+        <h1 style="text-align: center">Make an account</h1>
+
+        <br>
+        <div id="post" style="width: 50%" class="container">
+            <h2>Register</h2>
+            <form action="" method="post" name="register">
+                {{ form.hidden_tag() }}
+                <div class="mb-3">
+                    <label for="fullname" class="form-label">Full name</label>
+                    {{ form.fullname(class_="form-control", id_="fullname") }}
+                    {% for error in form.fullname.errors %}
+                      <div class="form-text text-danger">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    {{ form.username(class_="form-control", id_="username") }}
+                    {% for error in form.username.errors %}
+                      <div class="form-text text-danger">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                <div class="mb-3">
+                    <label for="password_hash" class="form-label">Password</label>
+                    {{ form.password_hash(class_="form-control", id_="password_hash") }}
+                    {% for error in form.password_hash.errors %}
+                      <div class="form-text text-danger">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                <div class="mb-3">
+                  <label for="password_hash2" class="form-label">Confirm Password</label>
+                  {{ form.password_hash2(class_="form-control", id_="password_hash2") }}
+                  {% for error in form.password_hash2.errors %}
+                    <div class="form-text text-danger">{{ error }}</div>
+                  {% endfor %}
+              </div>
+                <div class="mb-3">
+                    <label for="uniyear" class="form-label">University Year</label>
+                    {{ form.uniyear(class_="form-control", id_="uniyear") }}
+                    {% for error in form.uniyear.errors %}
+                      <div class="form-text text-danger">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                <div class="mb-3">
+                    <label for="uniemail" class="form-label">University of Leeds Email</label>
+                    {{ form.uniemail(class_="form-control", id_="uniemail") }}
+                    {% for error in form.uniemail.errors %}
+                      <div class="form-text text-danger">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                <button type="submit" style="background-color:blue; color:white" class="btn btn-primary">Submit</button>
+                <br>
+            </form>
+            <br>
+        </div>
+
+
+    </body>
+</html>
+{% endblock %}

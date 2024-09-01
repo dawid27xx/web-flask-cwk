@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block content %}
+<html>
+<head>
+<script src="{{ url_for('static', filename='js/like.js') }}"></script>
+</head>
+<body>
+<br>
+<!-- Group page -->
+<div class="container" id="post">
+    <div class="row">
+    <div class="col-8">
+    <h1 style="color:grey" >{{group.title}}</h1>
+    </div>
+    <div class="col-4">
+    <a href="/leavegroup/{{group.id}}" style="width:100px" class="btn btn-outline-danger float-right">Leave Group</a>
+    <a href="/findgroups" style="width:100px" class="btn btn-outline-dark float-right">Return</a>
+    </div>
+</div>
+</div>
+<br>
+<!-- Add Post Section -->
+<br>
+<div class="container" id="post">
+    <strong style="font-size:25px">Add Post</strong>
+    <form action="" method="post" name="login">
+        {{ form.hidden_tag() }}
+        <div class="mb-3">
+            <label for="content" class="form-label">Post into this group!</label>
+            {{ form.content(class="form-control", rows="2", id="content") }}
+            {% for error in form.content.errors %}
+              <div class="form-text text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+        <button type="submit" style="background-color:#1d6df0;color:white" class="btn float-right">Submit</button>
+        <br>
+    </form>
+    <br>
+</div>
+<br>
+<!-- Display Post Section -->
+{% for post in posts %}
+    <div class="container" id="post">
+    <strong>{{post.creator.fullname}}</strong>
+    <p style="color:black; font-size:12px">{{post.date.strftime("%d/%m/%Y, %H:%M:%S")}}</p>
+    <div id="text">
+    {{post.content}}
+    </div>
+    <br>
+    <div class="row" style="padding:10px">
+    <div class="col-4">
+    <a onclick="like({{post.id}})" id="likebutton" ><img id="likeicon" src="/static/likeicon.webp" alt="like button"></a>
+    {% if post in liked_posts %} 
+    <strong><span style="color:green" id="like-count-{{ post.id }}">{{ post.likes }}</span></strong>
+    {% else %}
+    <strong><span style="color:black" id="like-count-{{ post.id }}">{{ post.likes }}</span></strong>
+    {% endif %}
+    </div>
+    {% if post.creator_id == current_user.id %}
+    <div class="col-8">
+    <a href="/deletepost/{{post.id}}" class="btn btn-outline-danger float-right">Delete</a>
+    </div>
+    {% else %}
+    {% endif %}
+    </div>
+    </div>
+    <br>
+    </div>
+    {% endfor %}
+</div>
+<br>
+<hr>
+<br>
+</div>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block content %}
+<html>
+ <head>
+</head>
+<body>
+
+<!-- Create Group Section -->
+<div class="container" id="post">
+<div class="row">
+    <div class="col-8">
+<h1>Create a Group</h1>
+    </div>
+    <div class="col-4">
+<a href="/creategroup" style="background-color:green; color:white; padding:12px" class="btn float-right">Create</a>
+</div>
+</div>
+</div>
+<br>
+<div style="background-color : #f1f2f5;" class="container" id="post">
+<h2>Groups:</h2>
+</div>
+<br>
+
+{% for group in group_list %}
+        <div class="container" id="post">
+        <div class="row" style="padding:10px">
+        <div class="col-8">
+        <strong style="font-size: 20px">{{group.title}}</strong>
+        <p style="color:black">{{members_num.query.filter_by(group_id=group.id).count()}} members</p>
+        </div>
+        <div class="col-4">
+        <a href="/entergroup/{{group.id}}" style="background-color:green; color:white" class="btn float-right">Enter</a>
+    </div>
+    </div>
+    </div>
+    <br>
+{% endfor %}
+
+{% for group in group2_list %}
+        <div class="container" id="post">
+        <div class="row" style="padding:10px">
+        <div class="col-8">
+        <strong style="font-size: 20px">{{group.title}}</strong>
+        <p style="color:black">{{members_num.query.filter_by(group_id=group.id).count()}} members</p>
+        </div>
+        <div class="col-4">
+        <a href="/joingroup/{{group.id}}" style="background-color:#381ced; color:white" class="btn float-right">Join</a>
+    </div>
+    </div>
+    </div>
+    <br>
+{% endfor %}
+
+
+<br>
+<hr>
+<br>
+</body>
+</html>
+{% endblock %}

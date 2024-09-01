@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+<html>
+ <head>
+<script src="{{ url_for('static', filename='js/like.js') }}"></script>
+
+</head>
+<body>
+<div style="text-align:center">
+<h1>{{current_user.fullname}}</h1>
+<img id="profilepic" src="static/profile.png" alt="Profile picture">
+<h2>{{current_user.username}}<h2>
+<a href='/settings' class="btn btn-outline-dark">Edit Profile</a>
+<br>
+<hr>
+<h3>Your posts:</h3>
+<br>
+</div>
+{% for post in posts %}
+    <div class="container" id="post">
+    <strong>{{post.creator.fullname}}</strong>
+    {% if groups.get(post.domain).title %}
+    <p>In '{{groups.get(post.domain).title}}' Group</p>
+    <p style="color:black; font-size:12px">{{post.date.strftime("%d/%m/%Y, %H:%M:%S")}}</p>
+    {% else %}
+    <p>In Feed</p>
+    <p style="color:black; font-size:12px">{{post.date.strftime("%d/%m/%Y, %H:%M:%S")}}</p>
+
+    {% endif %}
+    <div id="text">
+    {{post.content}}
+    </div>
+    <br>
+    <div class="row" style="padding:10px">
+    <div class="col-4">
+    <a onclick="like({{post.id}})" id="likebutton" ><img id="likeicon" src="/static/likeicon.webp" alt="like button"></a>
+    {% if post in likes %} 
+    <strong><span style="color:green" id="like-count-{{ post.id }}">{{ post.likes }}</span></strong>
+    {% else %}
+    <strong><span style="color:black" id="like-count-{{ post.id }}">{{ post.likes }}</span></strong>
+    {% endif %}
+    </div>
+    <div class="col-8">
+    <a href="/deletepostprofile/{{post.id}}" class="btn btn-outline-danger float-right">Delete</a>
+    </div>
+    </div>
+    </div>
+    <br>
+{% endfor%}
+<br>
+<hr>
+<br>
+</body>
+</html>
+{% endblock %}

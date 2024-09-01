@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+<html>
+ <head>
+</head>
+<body>
+
+<!-- Create Group Section -->
+<div class="container" id="post">
+<h1 style="color:grey" >Settings</h1>
+</div>
+<br>
+<h3 style="text-align:center">User Settings</h3>
+<div class="container" id="post">
+    <div class="row">
+        <div class="col-8">
+            <h4>Change Username</h4>
+        </div>
+        <div class="col-4">
+            <a href='/changeusername' class="btn btn-outline-dark float-right">Change</a>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-8">
+            <h4>Change Password</h4>
+        </div>
+        <div class="col-4">
+            <a href='/changepassword' class="btn btn-outline-dark float-right">Change</a>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-8">
+            <h4>Delete Account</h4>
+        </div>
+        <div class="col-4">
+            <a href='/deleteaccountpage' class="btn btn-outline-danger float-right">Delete</a>
+        </div>
+    </div>
+</div>
+<br>
+
+
+<br>
+<hr>
+<br>
+</body>
+</html>
+{% endblock %}
